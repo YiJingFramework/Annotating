@@ -1,13 +1,37 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+		<Authors>yueyinqiu5990</Authors>
+		<Description>This package provides a general scheme for annotating like Zhouyi.</Description>
+		<Copyright>Copyright © 2022 yueyinqiu5990. All rights reserved.</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/YiJingFramework/YiJingFramework.Annotating/wiki</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/YiJingFramework/YiJingFramework.Annotating.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>zhouyi;i-ching;yijing;yijingframework</PackageTags>
+		<PackageId>YiJingFramework.Annotating</PackageId>
+		<Version>1.0.0</Version>
+		<Company>YiJingFramework</Company>
+		<PackageIcon>Taichi.png</PackageIcon>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="YiJingFramework.Core" Version="5.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Include="..\Taichi.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="YiJingFramework.Core" Version="5.0.0" />
+	</ItemGroup>
 
 </Project>

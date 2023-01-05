@@ -20,9 +20,6 @@
     <None Update="jing.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="tuan.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="xiang.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

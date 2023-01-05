@@ -2,32 +2,40 @@
 using YiJingFramework.Annotating;
 using YiJingFramework.References.Zhouyi;
 
-var annotationFile = new AnnotationStore();
+var store = new AnnotationStore() {
+    Title = "Zhouyi"
+};
+store.Tags.Add("TEST");
 
-var indexing = annotationFile.AddGroup("卦序");
-var naming = annotationFile.AddGroup("卦名");
-var text = annotationFile.AddGroup("卦辞");
-var lineText = annotationFile.AddGroup("爻辞");
-var yong = annotationFile.AddGroup("用辞");
+var indexing = store.AddPaintingGroup("卦序", "TEST");
+var naming = store.AddPaintingGroup("卦名");
+var text = store.AddPaintingGroup("卦辞");
+var lineText = store.AddPaintingLinesGroup("爻辞");
+var yong = store.AddPaintingGroup("用辞");
 
 var zhouyi = new Zhouyi("./jing.json");
 for (int i = 1; i <= 64; i++)
 {
     var hexagram = zhouyi.GetHexagram(i);
     var painting = hexagram.GetPainting();
-    _ = indexing.AddEntryTargetsPainting(painting, hexagram.Index.ToString());
-    _ = naming.AddEntryTargetsPainting(painting, hexagram.Name);
-    _ = text.AddEntryTargetsPainting(painting, hexagram.Text);
+    _ = indexing.AddEntry(painting, hexagram.Index.ToString());
+    _ = naming.AddEntry(painting, hexagram.Name);
+    _ = text.AddEntry(painting, hexagram.Text);
     for (int j = 0; j < 6; j++)
     {
-        _ = lineText.AddEntryTargetsLine(painting, j, hexagram.GetLine(j + 1).LineText);
+        _ = lineText.AddEntry(new(painting, j), hexagram.GetLine(j + 1).LineText);
     }
     if(hexagram.ApplyNinesOrApplySixes is not null)
     {
-        _ = yong.AddEntryTargetsPainting(painting, hexagram.ApplyNinesOrApplySixes.LineText);
+        _ = yong.AddEntry(painting, hexagram.ApplyNinesOrApplySixes.LineText);
     }
 }
 
-File.WriteAllText("out.json", JsonSerializer.Serialize(annotationFile, new JsonSerializerOptions {
-     Encoder=System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
-}));
+var s = store.SerializeToJsonString(new JsonSerializerOptions {
+    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    WriteIndented = true
+});
+Console.WriteLine(s);
+
+var d = AnnotationStore.DeserializeFromJsonString(s);
+Console.WriteLine("Done");
