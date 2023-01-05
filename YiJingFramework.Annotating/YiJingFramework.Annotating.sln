@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YiJingFramework.Annotating", "YiJingFramework.Annotating\YiJingFramework.Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YiJingFramework.Annotating", "YiJingFramework.Annotating\YiJingFramework.Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZhouyiGenerator", "ZhouyiGenerator\ZhouyiGenerator.csproj", "{E8DDBA3F-166D-4009-8427-F64486AB7D48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZhouyiGenerator", "ZhouyiGenerator\ZhouyiGenerator.csproj", "{E8DDBA3F-166D-4009-8427-F64486AB7D48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UseCases", "UseCases\UseCases.csproj", "{EC02D96B-9118-40E4-99C1-F325EBE2973B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E8DDBA3F-166D-4009-8427-F64486AB7D48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8DDBA3F-166D-4009-8427-F64486AB7D48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8DDBA3F-166D-4009-8427-F64486AB7D48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
