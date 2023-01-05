@@ -37,55 +37,25 @@ namespace YiJingFramework.Annotating
         /// 注解内容。
         /// Content of the annotation.
         /// </param>
-        [SetsRequiredMembers]
-        public AnnotationEntry(T target, string content)
+        [JsonConstructor]
+        public AnnotationEntry(T? target, string? content)
         {
             Target = target;
             Content = content;
         }
-
-        [JsonIgnore]
-        private T? target;
 
         /// <summary>
         /// 注解所针对的内容。
         /// Target of the annotation.
         /// </summary>
         [JsonPropertyName("t")]
-        public required T Target
-        {
-            get
-            {
-                Debug.Assert(target is not null);
-                return target;
-            }
-            set
-            {
-                ArgumentNullException.ThrowIfNull(value);
-                target = value;
-            }
-        }
-
-        [JsonIgnore]
-        private string? content;
+        public T? Target { get; set; }
 
         /// <summary>
         /// 注解内容。
         /// Content of the annotation.
         /// </summary>
         [JsonPropertyName("c")]
-        public required string Content
-        {
-            get
-            {
-                Debug.Assert(content is not null);
-                return content;
-            }
-            set
-            {
-                ArgumentNullException.ThrowIfNull(value);
-                content = value;
-            }
-        }
+        public string? Content { get; set; }
     }
 }

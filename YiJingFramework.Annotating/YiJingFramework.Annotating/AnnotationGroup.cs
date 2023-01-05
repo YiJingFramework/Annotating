@@ -93,7 +93,7 @@ namespace YiJingFramework.Annotating
         /// 条目。
         /// The entry.
         /// </returns>
-        public AnnotationEntry<T> AddEntry(T target, string content)
+        public AnnotationEntry<T> AddEntry(T? target, string? content)
         {
             var e = new AnnotationEntry<T>()
             {
