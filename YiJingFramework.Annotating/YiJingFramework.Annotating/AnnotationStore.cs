@@ -15,7 +15,7 @@ namespace YiJingFramework.Annotating
     public sealed class AnnotationStore
     {
         // Used JsonPropertyNames:
-        // gl gp n t
+        // gl gn gp n t
 
         /// <summary>
         /// 仓库标题。
@@ -144,7 +144,7 @@ namespace YiJingFramework.Annotating
         /// 无目标（或者说整个都是目标的）的一系列注解组。
         /// Annotation groups target nothing (or the whole things).
         /// </summary>
-        [JsonPropertyName("gp")]
+        [JsonPropertyName("gn")]
         public IList<AnnotationGroup<NoTarget>> NoTargetGroups { get; }
 
         /// <summary>
