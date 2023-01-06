@@ -35,7 +35,7 @@ namespace YiJingFramework.Annotating
         /// 创建一个空的注解仓库。
         /// Create an empty annotation store.
         /// </summary>
-        public AnnotationStore() : this(null, null, null, null)
+        public AnnotationStore() : this(null, null, null, null, null)
         { }
 
         /// <summary>
@@ -52,6 +52,12 @@ namespace YiJingFramework.Annotating
         /// 仓库标签。
         /// Tags of the store.
         /// </param>
+        /// <param name="noTargetGroups">
+        /// 无目标的一系列注解组。
+        /// Annotation groups target nothing.
+        /// 此参数会被复制而非直接引用。
+        /// This will be copied rather than directly referenced.
+        /// </param>
         /// <param name="paintingGroups">
         /// 以 <seealso cref="Painting"/> 为目标的一系列注解组。
         /// Annotation groups target <seealso cref="Painting"/>s.
@@ -67,6 +73,7 @@ namespace YiJingFramework.Annotating
         [JsonConstructor]
         public AnnotationStore(string? title,
             IList<string>? tags,
+            IList<AnnotationGroup<NoTarget>>? noTargetGroups,
             IList<AnnotationGroup<Painting>>? paintingGroups,
             IList<AnnotationGroup<PaintingLines>>? paintingLinesGroups)
         {
@@ -80,6 +87,7 @@ namespace YiJingFramework.Annotating
             this.Title = title;
             this.Tags = CreateList(tags);
 
+            this.NoTargetGroups = CreateList(noTargetGroups);
             this.PaintingGroups = CreateList(paintingGroups);
             this.PaintingLinesGroups = CreateList(paintingLinesGroups);
         }
@@ -132,6 +140,72 @@ namespace YiJingFramework.Annotating
             return JsonSerializer.Deserialize<AnnotationStore>(s, serializerOptions);
         }
 
+        /// <summary>
+        /// 无目标（或者说整个都是目标的）的一系列注解组。
+        /// Annotation groups target nothing (or the whole things).
+        /// </summary>
+        [JsonPropertyName("gp")]
+        public IList<AnnotationGroup<NoTarget>> NoTargetGroups { get; }
+
+        /// <summary>
+        /// 添加一个新无目标组。
+        /// Add a new no target group.
+        /// </summary>
+        /// <param name="title">
+        /// 组标题。
+        /// Title of the group.
+        /// </param>
+        /// <param name="comment">
+        /// 一些关于这个组的内容。
+        /// Something about this group.
+        /// </param>
+        /// <returns>
+        /// 组。
+        /// The group.
+        /// </returns>
+        public AnnotationGroup<NoTarget> AddNoTargetGroup(
+            string? title = null, string? comment = null)
+        {
+            var g = new AnnotationGroup<NoTarget>() {
+                Title = title,
+                Comment = comment
+            };
+            this.NoTargetGroups.Add(g);
+            return g;
+        }
+
+        /// <summary>
+        /// 在新的组中添加一个无目标条目。
+        /// Add a no-target entry in a new group.
+        /// </summary>
+        /// <param name="content">
+        /// 条目内容。
+        /// Content of the entry.
+        /// </param>
+        /// <param name="groupTitle">
+        /// 组标题。
+        /// Title of the group.
+        /// </param>
+        /// <param name="groupComment">
+        /// 一些关于这个组的内容。
+        /// Something about this group.
+        /// </param>
+        /// <returns>
+        /// 组。
+        /// The group.
+        /// </returns>
+        public AnnotationGroup<NoTarget> AddNoTargetEntryInNewGroup(
+            string? content, string? groupTitle = null, string? groupComment = null)
+        {
+            var g = new AnnotationGroup<NoTarget>() {
+                Title = groupTitle,
+                Comment = groupComment
+            };
+            _ = g.AddEntry(NoTarget.Default, content);
+            this.NoTargetGroups.Add(g);
+            return g;
+        }
+
 
         /// <summary>
         /// 以 <seealso cref="Painting"/> 为目标的一系列注解组。
@@ -139,13 +213,6 @@ namespace YiJingFramework.Annotating
         /// </summary>
         [JsonPropertyName("gp")]
         public IList<AnnotationGroup<Painting>> PaintingGroups { get; }
-
-        /// <summary>
-        /// 以 <seealso cref="PaintingLines"/> 为目标的一系列注解组。
-        /// Annotation groups target <seealso cref="PaintingLines"/>s.
-        /// </summary>
-        [JsonPropertyName("gl")]
-        public IList<AnnotationGroup<PaintingLines>> PaintingLinesGroups { get; }
 
         /// <summary>
         /// 添加一个新 <seealso cref="Painting"/> 组。
@@ -173,6 +240,14 @@ namespace YiJingFramework.Annotating
             this.PaintingGroups.Add(g);
             return g;
         }
+
+
+        /// <summary>
+        /// 以 <seealso cref="PaintingLines"/> 为目标的一系列注解组。
+        /// Annotation groups target <seealso cref="PaintingLines"/>s.
+        /// </summary>
+        [JsonPropertyName("gl")]
+        public IList<AnnotationGroup<PaintingLines>> PaintingLinesGroups { get; }
 
         /// <summary>
         /// 添加一个新 <seealso cref="PaintingLines"/> 组。
