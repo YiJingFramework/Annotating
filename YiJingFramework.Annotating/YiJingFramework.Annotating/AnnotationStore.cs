@@ -15,7 +15,7 @@ namespace YiJingFramework.Annotating
     public sealed class AnnotationStore
     {
         // Used JsonPropertyNames:
-        // gl gn gp n t
+        // gl gp gs n t
 
         /// <summary>
         /// 仓库标题。
@@ -73,7 +73,7 @@ namespace YiJingFramework.Annotating
         [JsonConstructor]
         public AnnotationStore(string? title,
             IList<string>? tags,
-            IList<AnnotationGroup<NoTarget>>? noTargetGroups,
+            IList<AnnotationGroup<string>>? stringGroups,
             IList<AnnotationGroup<Painting>>? paintingGroups,
             IList<AnnotationGroup<PaintingLines>>? paintingLinesGroups)
         {
@@ -87,7 +87,7 @@ namespace YiJingFramework.Annotating
             this.Title = title;
             this.Tags = CreateList(tags);
 
-            this.NoTargetGroups = CreateList(noTargetGroups);
+            this.StringGroups = CreateList(stringGroups);
             this.PaintingGroups = CreateList(paintingGroups);
             this.PaintingLinesGroups = CreateList(paintingLinesGroups);
         }
@@ -141,15 +141,17 @@ namespace YiJingFramework.Annotating
         }
 
         /// <summary>
-        /// 无目标（或者说整个都是目标的）的一系列注解组。
-        /// Annotation groups target nothing (or the whole things).
+        /// 以 <seealso cref="string"/> 为目标的一系列注解组。
+        /// Annotation groups target <seealso cref="string"/>s.
+        /// 通常这些字符串不是真正的“目标”，而是目标的字符串表示形式。
+        /// These strings are usually not the real "target", but its string representation.
         /// </summary>
-        [JsonPropertyName("gn")]
-        public IList<AnnotationGroup<NoTarget>> NoTargetGroups { get; }
+        [JsonPropertyName("gs")]
+        public IList<AnnotationGroup<string>> StringGroups { get; }
 
         /// <summary>
-        /// 添加一个新无目标组。
-        /// Add a new no target group.
+        /// 添加一个新 <seealso cref="string"/> 组。
+        /// Add a new <seealso cref="string"/> group.
         /// </summary>
         /// <param name="title">
         /// 组标题。
@@ -163,49 +165,16 @@ namespace YiJingFramework.Annotating
         /// 组。
         /// The group.
         /// </returns>
-        public AnnotationGroup<NoTarget> AddNoTargetGroup(
+        public AnnotationGroup<string> AddStringGroup(
             string? title = null, string? comment = null)
         {
-            var g = new AnnotationGroup<NoTarget>() {
+            var g = new AnnotationGroup<string>() {
                 Title = title,
                 Comment = comment
             };
-            this.NoTargetGroups.Add(g);
+            this.StringGroups.Add(g);
             return g;
         }
-
-        /// <summary>
-        /// 在新的组中添加一个无目标条目。
-        /// Add a no-target entry in a new group.
-        /// </summary>
-        /// <param name="content">
-        /// 条目内容。
-        /// Content of the entry.
-        /// </param>
-        /// <param name="groupTitle">
-        /// 组标题。
-        /// Title of the group.
-        /// </param>
-        /// <param name="groupComment">
-        /// 一些关于这个组的内容。
-        /// Something about this group.
-        /// </param>
-        /// <returns>
-        /// 组。
-        /// The group.
-        /// </returns>
-        public AnnotationGroup<NoTarget> AddNoTargetEntryInNewGroup(
-            string? content, string? groupTitle = null, string? groupComment = null)
-        {
-            var g = new AnnotationGroup<NoTarget>() {
-                Title = groupTitle,
-                Comment = groupComment
-            };
-            _ = g.AddEntry(NoTarget.Default, content);
-            this.NoTargetGroups.Add(g);
-            return g;
-        }
-
 
         /// <summary>
         /// 以 <seealso cref="Painting"/> 为目标的一系列注解组。
