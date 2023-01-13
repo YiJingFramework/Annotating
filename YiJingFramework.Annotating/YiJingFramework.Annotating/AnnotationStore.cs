@@ -108,10 +108,14 @@ namespace YiJingFramework.Annotating
         /// </returns>
         public string SerializeToJsonString(JsonSerializerOptions? serializerOptions = null)
         {
-            var context = serializerOptions is null ?
-                AnnotationStoreSerializerContext.Default :
-                new AnnotationStoreSerializerContext(serializerOptions);
-
+            AnnotationStoreSerializerContext context;
+            if(serializerOptions is null)
+                context = AnnotationStoreSerializerContext.Default;
+            else
+            {
+                serializerOptions = new(serializerOptions);
+                context = new AnnotationStoreSerializerContext(serializerOptions);
+            }
             return JsonSerializer.Serialize(this, context.AnnotationStore);
         }
 
@@ -144,10 +148,14 @@ namespace YiJingFramework.Annotating
         {
             ArgumentNullException.ThrowIfNull(s);
 
-            var context = serializerOptions is null ?
-                AnnotationStoreSerializerContext.Default :
-                new AnnotationStoreSerializerContext(serializerOptions);
-
+            AnnotationStoreSerializerContext context;
+            if (serializerOptions is null)
+                context = AnnotationStoreSerializerContext.Default;
+            else
+            {
+                serializerOptions = new(serializerOptions);
+                context = new AnnotationStoreSerializerContext(serializerOptions);
+            }
             return JsonSerializer.Deserialize(s, context.AnnotationStore);
         }
 
