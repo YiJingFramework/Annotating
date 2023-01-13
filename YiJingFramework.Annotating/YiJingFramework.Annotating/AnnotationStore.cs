@@ -2,8 +2,10 @@
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Xml.Linq;
 using YiJingFramework.Annotating.Entities;
+using YiJingFramework.Annotating.Serialization;
 using YiJingFramework.Core;
 
 namespace YiJingFramework.Annotating
@@ -52,9 +54,9 @@ namespace YiJingFramework.Annotating
         /// 仓库标签。
         /// Tags of the store.
         /// </param>
-        /// <param name="noTargetGroups">
-        /// 无目标的一系列注解组。
-        /// Annotation groups target nothing.
+        /// <param name="stringGroups">
+        /// 以 <seealso cref="string"/> 为目标的一系列注解组。
+        /// Annotation groups target <seealso cref="string"/>s.
         /// 此参数会被复制而非直接引用。
         /// This will be copied rather than directly referenced.
         /// </param>
@@ -106,7 +108,11 @@ namespace YiJingFramework.Annotating
         /// </returns>
         public string SerializeToJsonString(JsonSerializerOptions? serializerOptions = null)
         {
-            return JsonSerializer.Serialize(this, serializerOptions);
+            var context = serializerOptions is null ?
+                AnnotationStoreSerializerContext.Default :
+                new AnnotationStoreSerializerContext(serializerOptions);
+
+            return JsonSerializer.Serialize(this, context.AnnotationStore);
         }
 
         /// <summary>
@@ -137,7 +143,12 @@ namespace YiJingFramework.Annotating
             string s, JsonSerializerOptions? serializerOptions = null)
         {
             ArgumentNullException.ThrowIfNull(s);
-            return JsonSerializer.Deserialize<AnnotationStore>(s, serializerOptions);
+
+            var context = serializerOptions is null ?
+                AnnotationStoreSerializerContext.Default :
+                new AnnotationStoreSerializerContext(serializerOptions);
+
+            return JsonSerializer.Deserialize(s, context.AnnotationStore);
         }
 
         /// <summary>
