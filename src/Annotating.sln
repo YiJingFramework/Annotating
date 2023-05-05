@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annotating", "Annotating\Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCases", "UseCases\UseCases.csproj", "{EC02D96B-9118-40E4-99C1-F325EBE2973B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCaseOfAnnotating", "UseCases\UseCaseOfAnnotating.csproj", "{EC02D96B-9118-40E4-99C1-F325EBE2973B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UseCases", "UseCases", "{87797979-4678-4162-9E2D-22503D6ED5C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC02D96B-9118-40E4-99C1-F325EBE2973B} = {87797979-4678-4162-9E2D-22503D6ED5C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D69F5381-967C-4DE7-AF2D-D0859FA78A70}
