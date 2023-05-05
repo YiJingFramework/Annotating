@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace YiJingFramework.Annotating
 {
@@ -40,8 +38,8 @@ namespace YiJingFramework.Annotating
         [JsonConstructor]
         public AnnotationEntry(T? target, string? content)
         {
-            Target = target;
-            Content = content;
+            this.Target = target;
+            this.Content = content;
         }
 
         /// <summary>

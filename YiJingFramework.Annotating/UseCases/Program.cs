@@ -1,15 +1,15 @@
 ﻿using System.Text.Json;
-using YiJingFramework.Core;
 using YiJingFramework.Annotating;
 using YiJingFramework.Annotating.Entities;
+using YiJingFramework.PrimitiveTypes;
 
 var store = new AnnotationStore() {
     Title = "Sample Store"
 };
 store.Tags.Add("QianKun");
 
-var qian = new Painting(Enumerable.Repeat(YinYang.Yang, 3));
-var kun = new Painting(Enumerable.Repeat(YinYang.Yin, 3));
+var qian = new Gua(Enumerable.Repeat(Yinyang.Yang, 3));
+var kun = new Gua(Enumerable.Repeat(Yinyang.Yin, 3));
 
 var namingGroup = store.AddPaintingGroup("Naming", "Name");
 namingGroup.AddEntry(qian, "QIAN");
