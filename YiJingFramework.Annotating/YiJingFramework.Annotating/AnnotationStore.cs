@@ -56,15 +56,15 @@ public sealed class AnnotationStore
     /// 此参数会被复制而非直接引用。
     /// This will be copied rather than directly referenced.
     /// </param>
-    /// <param name="paintingGroups">
+    /// <param name="guaGroups">
     /// 以 <seealso cref="Gua"/> 为目标的一系列注解组。
     /// Annotation groups target <seealso cref="Gua"/>s.
     /// 此参数会被复制而非直接引用。
     /// This will be copied rather than directly referenced.
     /// </param>
-    /// <param name="paintingLinesGroups">
-    /// 以 <seealso cref="PaintingLines"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="PaintingLines"/>s.
+    /// <param name="guaLinesGroups">
+    /// 以 <seealso cref="GuaLines"/> 为目标的一系列注解组。
+    /// Annotation groups target <seealso cref="GuaLines"/>s.
     /// 此参数会被复制而非直接引用。
     /// This will be copied rather than directly referenced.
     /// </param>
@@ -72,8 +72,8 @@ public sealed class AnnotationStore
     public AnnotationStore(string? title,
         IList<string>? tags,
         IList<AnnotationGroup<string>>? stringGroups,
-        IList<AnnotationGroup<Gua>>? paintingGroups,
-        IList<AnnotationGroup<PaintingLines>>? paintingLinesGroups)
+        IList<AnnotationGroup<Gua>>? guaGroups,
+        IList<AnnotationGroup<GuaLines>>? guaLinesGroups)
     {
         static List<T> CreateList<T>(IList<T>? e)
         {
@@ -86,8 +86,8 @@ public sealed class AnnotationStore
         this.Tags = CreateList(tags);
 
         this.StringGroups = CreateList(stringGroups);
-        this.PaintingGroups = CreateList(paintingGroups);
-        this.PaintingLinesGroups = CreateList(paintingLinesGroups);
+        this.GuaGroups = CreateList(guaGroups);
+        this.GuaLinesGroups = CreateList(guaLinesGroups);
     }
 
     /// <summary>
@@ -196,7 +196,7 @@ public sealed class AnnotationStore
     /// Annotation groups target <seealso cref="Gua"/>s.
     /// </summary>
     [JsonPropertyName("gp")]
-    public IList<AnnotationGroup<Gua>> PaintingGroups { get; }
+    public IList<AnnotationGroup<Gua>> GuaGroups { get; }
 
     /// <summary>
     /// 添加一个新 <seealso cref="Gua"/> 组。
@@ -214,28 +214,28 @@ public sealed class AnnotationStore
     /// 组。
     /// The group.
     /// </returns>
-    public AnnotationGroup<Gua> AddPaintingGroup(
+    public AnnotationGroup<Gua> AddGuaGroup(
         string? title = null, string? comment = null)
     {
         var g = new AnnotationGroup<Gua>() {
             Title = title,
             Comment = comment
         };
-        this.PaintingGroups.Add(g);
+        this.GuaGroups.Add(g);
         return g;
     }
 
 
     /// <summary>
-    /// 以 <seealso cref="PaintingLines"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="PaintingLines"/>s.
+    /// 以 <seealso cref="GuaLines"/> 为目标的一系列注解组。
+    /// Annotation groups target <seealso cref="GuaLines"/>s.
     /// </summary>
     [JsonPropertyName("gl")]
-    public IList<AnnotationGroup<PaintingLines>> PaintingLinesGroups { get; }
+    public IList<AnnotationGroup<GuaLines>> GuaLinesGroups { get; }
 
     /// <summary>
-    /// 添加一个新 <seealso cref="PaintingLines"/> 组。
-    /// Add a new <seealso cref="PaintingLines"/> group.
+    /// 添加一个新 <seealso cref="GuaLines"/> 组。
+    /// Add a new <seealso cref="GuaLines"/> group.
     /// </summary>
     /// <param name="title">
     /// 组标题。
@@ -249,14 +249,14 @@ public sealed class AnnotationStore
     /// 组。
     /// The group.
     /// </returns>
-    public AnnotationGroup<PaintingLines> AddPaintingLinesGroup(
+    public AnnotationGroup<GuaLines> AddGuaLinesGroup(
         string? title = null, string? comment = null)
     {
-        var g = new AnnotationGroup<PaintingLines>() {
+        var g = new AnnotationGroup<GuaLines>() {
             Title = title,
             Comment = comment
         };
-        this.PaintingLinesGroups.Add(g);
+        this.GuaLinesGroups.Add(g);
         return g;
     }
 }
