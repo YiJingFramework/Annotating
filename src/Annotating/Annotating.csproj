@@ -8,7 +8,7 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<IsTrimmable>true</IsTrimmable>
 
-		<Version>3.0.0</Version>
+		<Version>3.0.1</Version>
 		<PackageId>YiJingFramework.Annotating</PackageId>
 		<PackageProjectUrl>https://github.com/YiJingFramework/Annotating/wiki</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/YiJingFramework/Annotating.git</RepositoryUrl>
@@ -32,7 +32,6 @@
 
 	<ItemGroup>
 	  <PackageReference Include="YiJingFramework.PrimitiveTypes" Version="1.1.0" />
-	  <PackageReference Include="YiJingFramework.PrimitiveTypes.GuaWithFixedCount" Version="1.4.0" />
 	</ItemGroup>
 
 </Project>
