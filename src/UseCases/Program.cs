@@ -34,6 +34,7 @@ Console.WriteLine(store.SerializeToJsonString(new JsonSerializerOptions {
  *   "t": [
  *     "QianKun"
  *   ],
+ *   "gs": [],
  *   "gp": [
  *     {
  *       "t": "Naming",

@@ -196,6 +196,7 @@ public sealed class AnnotationStore
     /// Annotation groups target <seealso cref="Gua"/>s.
     /// </summary>
     [JsonPropertyName("gp")]
+    // used to be named PaintingGroups, so JsonPropertyName is 'gp'
     public IList<AnnotationGroup<Gua>> GuaGroups { get; }
 
     /// <summary>

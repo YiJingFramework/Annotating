@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YiJingFramework.Annotating", "YiJingFramework.Annotating\YiJingFramework.Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annotating", "Annotating\Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCases", "UseCases\UseCases.csproj", "{EC02D96B-9118-40E4-99C1-F325EBE2973B}"
 EndProject
