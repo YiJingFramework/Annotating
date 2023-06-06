@@ -6,26 +6,20 @@ namespace YiJingFramework.Annotating;
 /// 注解条目。
 /// An annotation entry.
 /// </summary>
-/// <typeparam name="T">
-/// 注解所针对内容的类型。
-/// Type of target of the entry.
-/// 应该使用可以（被 <seealso cref="System.Text.Json"/> ）（反）序列化的类型。
-/// It should be (de)serializable (with <seealso cref="System.Text.Json"/>).
-/// </typeparam>
-public sealed class AnnotationEntry<T>
+public sealed class AnnotationEntry
 {
     // Used JsonPropertyNames:
     // c t
 
     /// <summary>
-    /// 创建 <seealso cref="AnnotationEntry{T}"/> 的实例。
-    /// Create a new instance of <seealso cref="AnnotationEntry{T}"/>.
+    /// 创建 <seealso cref="AnnotationEntry"/> 的实例。
+    /// Create a new instance of <seealso cref="AnnotationEntry"/>.
     /// </summary>
     public AnnotationEntry() { }
 
     /// <summary>
-    /// 创建 <seealso cref="AnnotationEntry{T}"/> 的实例。
-    /// Create a new instance of <seealso cref="AnnotationEntry{T}"/>.
+    /// 创建 <seealso cref="AnnotationEntry"/> 的实例。
+    /// Create a new instance of <seealso cref="AnnotationEntry"/>.
     /// </summary>
     /// <param name="target">
     /// 注解所针对的内容。
@@ -36,7 +30,7 @@ public sealed class AnnotationEntry<T>
     /// Content of the annotation.
     /// </param>
     [JsonConstructor]
-    public AnnotationEntry(T? target, string? content)
+    public AnnotationEntry(string? target, string? content)
     {
         this.Target = target;
         this.Content = content;
@@ -47,7 +41,7 @@ public sealed class AnnotationEntry<T>
     /// Target of the annotation.
     /// </summary>
     [JsonPropertyName("t")]
-    public T? Target { get; set; }
+    public string? Target { get; set; }
 
     /// <summary>
     /// 注解内容。

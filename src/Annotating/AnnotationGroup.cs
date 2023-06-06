@@ -6,13 +6,7 @@ namespace YiJingFramework.Annotating;
 /// 一组注解。
 /// A group of annotation.
 /// </summary>
-/// <typeparam name="T">
-/// 注解所针对内容的类型。
-/// Type of target of the entry.
-/// 应该使用可以（被 <seealso cref="System.Text.Json"/> ）（反）序列化的类型。
-/// It should be (de)serializable (with <seealso cref="System.Text.Json"/>).
-/// </typeparam>
-public sealed class AnnotationGroup<T>
+public sealed class AnnotationGroup
 {
     // Used JsonPropertyNames:
     // c e t
@@ -25,8 +19,8 @@ public sealed class AnnotationGroup<T>
     { }
 
     /// <summary>
-    /// 创建 <seealso cref="AnnotationEntry{T}"/> 的实例。
-    /// Create a new instance of <seealso cref="AnnotationEntry{T}"/>.
+    /// 创建 <seealso cref="AnnotationEntry"/> 的实例。
+    /// Create a new instance of <seealso cref="AnnotationEntry"/>.
     /// 一般在反序列化时使用。
     /// Only used during deserialization usually.
     /// </summary>
@@ -45,14 +39,14 @@ public sealed class AnnotationGroup<T>
     /// This will be copied rather than directly referenced.
     /// </param>
     [JsonConstructor]
-    public AnnotationGroup(string? title = null, string? comment = null, IList<AnnotationEntry<T>>? entries = null)
+    public AnnotationGroup(string? title = null, string? comment = null, IList<AnnotationEntry>? entries = null)
     {
         this.Title = title;
         this.Comment = comment;
         if (entries is null)
-            this.Entries = new List<AnnotationEntry<T>>();
+            this.Entries = new List<AnnotationEntry>();
         else
-            this.Entries = new List<AnnotationEntry<T>>(entries);
+            this.Entries = new List<AnnotationEntry>(entries);
     }
 
     /// <summary>
@@ -67,7 +61,7 @@ public sealed class AnnotationGroup<T>
     /// Included entries.
     /// </summary>
     [JsonPropertyName("e")]
-    public IList<AnnotationEntry<T>> Entries { get; }
+    public IList<AnnotationEntry> Entries { get; }
 
     /// <summary>
     /// 一些关于这个组的内容。
@@ -93,9 +87,9 @@ public sealed class AnnotationGroup<T>
     /// 条目。
     /// The entry.
     /// </returns>
-    public AnnotationEntry<T> AddEntry(T? target, string? content)
+    public AnnotationEntry AddEntry(string? target, string? content)
     {
-        var e = new AnnotationEntry<T>() {
+        var e = new AnnotationEntry() {
             Content = content,
             Target = target
         };

@@ -1,8 +1,6 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using YiJingFramework.Annotating.Entities;
 using YiJingFramework.Annotating.Serialization;
-using YiJingFramework.PrimitiveTypes;
 
 namespace YiJingFramework.Annotating;
 
@@ -13,7 +11,7 @@ namespace YiJingFramework.Annotating;
 public sealed class AnnotationStore
 {
     // Used JsonPropertyNames:
-    // gl gp gs n t
+    // g n t
 
     /// <summary>
     /// 仓库标题。
@@ -33,7 +31,7 @@ public sealed class AnnotationStore
     /// 创建一个空的注解仓库。
     /// Create an empty annotation store.
     /// </summary>
-    public AnnotationStore() : this(null, null, null, null, null)
+    public AnnotationStore() : this(null, null, null)
     { }
 
     /// <summary>
@@ -50,32 +48,18 @@ public sealed class AnnotationStore
     /// 仓库标签。
     /// Tags of the store.
     /// </param>
-    /// <param name="stringGroups">
-    /// 以 <seealso cref="string"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="string"/>s.
-    /// 此参数会被复制而非直接引用。
-    /// This will be copied rather than directly referenced.
-    /// </param>
-    /// <param name="guaGroups">
-    /// 以 <seealso cref="Gua"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="Gua"/>s.
-    /// 此参数会被复制而非直接引用。
-    /// This will be copied rather than directly referenced.
-    /// </param>
-    /// <param name="guaLinesGroups">
-    /// 以 <seealso cref="GuaLines"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="GuaLines"/>s.
+    /// <param name="groups">
+    /// 注解组。
+    /// Annotation groups.
     /// 此参数会被复制而非直接引用。
     /// This will be copied rather than directly referenced.
     /// </param>
     [JsonConstructor]
     public AnnotationStore(string? title,
         IList<string>? tags,
-        IList<AnnotationGroup<string>>? stringGroups,
-        IList<AnnotationGroup<Gua>>? guaGroups,
-        IList<AnnotationGroup<GuaLines>>? guaLinesGroups)
+        IList<AnnotationGroup>? groups)
     {
-        static List<T> CreateList<T>(IList<T>? e)
+        static List<T> CopyList<T>(IList<T>? e)
         {
             if (e is null)
                 return new List<T>();
@@ -83,11 +67,9 @@ public sealed class AnnotationStore
         }
 
         this.Title = title;
-        this.Tags = CreateList(tags);
+        this.Tags = CopyList(tags);
 
-        this.StringGroups = CreateList(stringGroups);
-        this.GuaGroups = CreateList(guaGroups);
-        this.GuaLinesGroups = CreateList(guaLinesGroups);
+        this.Groups = CopyList(groups);
     }
 
     /// <summary>
@@ -156,17 +138,15 @@ public sealed class AnnotationStore
     }
 
     /// <summary>
-    /// 以 <seealso cref="string"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="string"/>s.
-    /// 通常这些字符串不是真正的“目标”，而是目标的字符串表示形式。
-    /// These strings are usually not the real "target", but its string representation.
+    /// 注解组。
+    /// Annotation groups.
     /// </summary>
-    [JsonPropertyName("gs")]
-    public IList<AnnotationGroup<string>> StringGroups { get; }
+    [JsonPropertyName("g")]
+    public IList<AnnotationGroup> Groups { get; }
 
     /// <summary>
-    /// 添加一个新 <seealso cref="string"/> 组。
-    /// Add a new <seealso cref="string"/> group.
+    /// 添加一个新注解组。
+    /// Add a new annotation group.
     /// </summary>
     /// <param name="title">
     /// 组标题。
@@ -180,84 +160,14 @@ public sealed class AnnotationStore
     /// 组。
     /// The group.
     /// </returns>
-    public AnnotationGroup<string> AddStringGroup(
+    public AnnotationGroup AddGroup(
         string? title = null, string? comment = null)
     {
-        var g = new AnnotationGroup<string>() {
+        var g = new AnnotationGroup() {
             Title = title,
             Comment = comment
         };
-        this.StringGroups.Add(g);
-        return g;
-    }
-
-    /// <summary>
-    /// 以 <seealso cref="Gua"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="Gua"/>s.
-    /// </summary>
-    [JsonPropertyName("gp")]
-    // used to be named PaintingGroups, so JsonPropertyName is 'gp'
-    public IList<AnnotationGroup<Gua>> GuaGroups { get; }
-
-    /// <summary>
-    /// 添加一个新 <seealso cref="Gua"/> 组。
-    /// Add a new <seealso cref="Gua"/> group.
-    /// </summary>
-    /// <param name="title">
-    /// 组标题。
-    /// Title of the group.
-    /// </param>
-    /// <param name="comment">
-    /// 一些关于这个组的内容。
-    /// Something about this group.
-    /// </param>
-    /// <returns>
-    /// 组。
-    /// The group.
-    /// </returns>
-    public AnnotationGroup<Gua> AddGuaGroup(
-        string? title = null, string? comment = null)
-    {
-        var g = new AnnotationGroup<Gua>() {
-            Title = title,
-            Comment = comment
-        };
-        this.GuaGroups.Add(g);
-        return g;
-    }
-
-
-    /// <summary>
-    /// 以 <seealso cref="GuaLines"/> 为目标的一系列注解组。
-    /// Annotation groups target <seealso cref="GuaLines"/>s.
-    /// </summary>
-    [JsonPropertyName("gl")]
-    public IList<AnnotationGroup<GuaLines>> GuaLinesGroups { get; }
-
-    /// <summary>
-    /// 添加一个新 <seealso cref="GuaLines"/> 组。
-    /// Add a new <seealso cref="GuaLines"/> group.
-    /// </summary>
-    /// <param name="title">
-    /// 组标题。
-    /// Title of the group.
-    /// </param>
-    /// <param name="comment">
-    /// 一些关于这个组的内容。
-    /// Something about this group.
-    /// </param>
-    /// <returns>
-    /// 组。
-    /// The group.
-    /// </returns>
-    public AnnotationGroup<GuaLines> AddGuaLinesGroup(
-        string? title = null, string? comment = null)
-    {
-        var g = new AnnotationGroup<GuaLines>() {
-            Title = title,
-            Comment = comment
-        };
-        this.GuaLinesGroups.Add(g);
+        this.Groups.Add(g);
         return g;
     }
 }

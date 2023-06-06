@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using YiJingFramework.Annotating;
-using YiJingFramework.Annotating.Entities;
 using YiJingFramework.PrimitiveTypes;
 
 var store = new AnnotationStore() {
@@ -11,17 +10,9 @@ store.Tags.Add("QianKun");
 var qian = new Gua(Enumerable.Repeat(Yinyang.Yang, 3));
 var kun = new Gua(Enumerable.Repeat(Yinyang.Yin, 3));
 
-var namingGroup = store.AddGuaGroup("Naming", "Name");
-namingGroup.AddEntry(qian, "QIAN");
-namingGroup.AddEntry(kun, "KUN");
-
-var linesGroup = store.AddGuaLinesGroup("Line");
-linesGroup.AddEntry(new GuaLines(qian, 0), "Q1");
-linesGroup.AddEntry(new GuaLines(qian, 1), "Q2");
-linesGroup.AddEntry(new GuaLines(qian, 2), "Q3");
-linesGroup.AddEntry(new GuaLines(kun, 0), "K1");
-linesGroup.AddEntry(new GuaLines(kun, 1), "K2");
-linesGroup.AddEntry(new GuaLines(kun, 2), "K3");
+var namingGroup = store.AddGroup("Naming", "Name");
+namingGroup.AddEntry(qian.ToString(), "QIAN");
+namingGroup.AddEntry(kun.ToString(), "KUN");
 
 Console.WriteLine(store.SerializeToJsonString(new JsonSerializerOptions {
     WriteIndented = true
@@ -33,8 +24,7 @@ Console.WriteLine();
 //   "t": [
 //     "QianKun"
 //   ],
-//   "gs": [],
-//   "gp": [
+//   "g": [
 //     {
 //       "t": "Naming",
 //       "e": [
@@ -48,37 +38,6 @@ Console.WriteLine();
 //         }
 //       ],
 //       "c": "Name"
-//     }
-//   ],
-//   "gl": [
-//     {
-//       "t": "Line",
-//       "e": [
-//         {
-//           "t": "111100",
-//           "c": "Q1"
-//         },
-//         {
-//           "t": "111010",
-//           "c": "Q2"
-//         },
-//         {
-//           "t": "111001",
-//           "c": "Q3"
-//         },
-//         {
-//           "t": "000100",
-//           "c": "K1"
-//         },
-//         {
-//           "t": "000010",
-//           "c": "K2"
-//         },
-//         {
-//           "t": "000001",
-//           "c": "K3"
-//         }
-//       ]
 //     }
 //   ]
 // }
