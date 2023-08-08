@@ -185,6 +185,6 @@ public sealed class AnnotationStore
     /// </returns>
     public AnnotationGroup? GetGroup(string? title)
     {
-        return this.Groups.First(g => g.Title == title);
+        return this.Groups.FirstOrDefault(g => g.Title == title);
     }
 }

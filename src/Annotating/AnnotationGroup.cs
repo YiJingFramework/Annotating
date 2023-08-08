@@ -111,6 +111,6 @@ public sealed class AnnotationGroup
     /// </returns>
     public AnnotationEntry? GetEntry(string? target)
     {
-        return this.Entries.First(g => g.Target == target);
+        return this.Entries.FirstOrDefault(g => g.Target == target);
     }
 }
