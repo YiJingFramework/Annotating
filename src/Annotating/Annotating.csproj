@@ -12,7 +12,10 @@
 		<PackageId>YiJingFramework.Annotating</PackageId>
 		<PackageProjectUrl>https://github.com/YiJingFramework/Annotating/wiki</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/YiJingFramework/Annotating.git</RepositoryUrl>
-		<Description>此包提供了一个泛用的易学注解仓库结构。 This package provides a general scheme of Yi annotating stores.</Description>
+		<Description>
+			此包提供了一个泛用的易学注解仓库结构。
+			This package provides a general scheme of Yi annotating stores.
+		</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
