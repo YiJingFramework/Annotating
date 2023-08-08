@@ -170,4 +170,21 @@ public sealed class AnnotationStore
         this.Groups.Add(g);
         return g;
     }
+
+    /// <summary>
+    /// 尝试获取注解组。
+    /// Try to get an annotation group.
+    /// </summary>
+    /// <param name="title">
+    /// 组标题。
+    /// Title of the group.
+    /// </param>
+    /// <returns>
+    /// 组。
+    /// The group.
+    /// </returns>
+    public AnnotationGroup? GetGroup(string? title)
+    {
+        return this.Groups.First(g => g.Title == title);
+    }
 }

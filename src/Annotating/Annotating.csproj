@@ -8,11 +8,11 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<IsTrimmable>true</IsTrimmable>
 
-		<Version>4.0.0</Version>
+		<Version>4.1.0</Version>
 		<PackageId>YiJingFramework.Annotating</PackageId>
 		<PackageProjectUrl>https://github.com/YiJingFramework/Annotating/wiki</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/YiJingFramework/Annotating.git</RepositoryUrl>
-		<Description>This package provides a general scheme for annotatings like Zhouyi.</Description>
+		<Description>此包提供了一个泛用的易学注解仓库结构。 This package provides a general scheme of Yi annotating stores.</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -21,10 +21,15 @@
 		<PackageIcon>Taichi.png</PackageIcon>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>zhouyi;i-ching;yijing;yijingframework</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\Taichi.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

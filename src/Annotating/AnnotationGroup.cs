@@ -96,4 +96,21 @@ public sealed class AnnotationGroup
         this.Entries.Add(e);
         return e;
     }
+
+    /// <summary>
+    /// 尝试获取新条目。
+    /// Try to get an entry.
+    /// </summary>
+    /// <param name="target">
+    /// 注解所针对的内容。
+    /// Target of the annotation.
+    /// </param>
+    /// <returns>
+    /// 条目。
+    /// The entry.
+    /// </returns>
+    public AnnotationEntry? GetEntry(string? target)
+    {
+        return this.Entries.First(g => g.Target == target);
+    }
 }
