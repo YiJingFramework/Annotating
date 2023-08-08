@@ -19,7 +19,10 @@ public class AnnotationStoreTests
 
         var namingGroup = store.AddGroup(title: "Gua Name", comment: "Names of the Guas");
         namingGroup.AddEntry("111", "Qian");
-        namingGroup.AddEntry("000", "Kun");
+        namingGroup.AddEntry("000", "KKK");
+        var entry = namingGroup.GetEntry("000");
+        Assert.IsNotNull(entry);
+        entry.Content = "Kun";
 
         var serialized = store.SerializeToJsonString();
         Assert.AreEqual(
