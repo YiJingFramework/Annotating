@@ -5,9 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Annotating", "Annotating\Annotating.csproj", "{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCaseOfAnnotating", "UseCases\UseCaseOfAnnotating.csproj", "{EC02D96B-9118-40E4-99C1-F325EBE2973B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UseCases", "UseCases", "{87797979-4678-4162-9E2D-22503D6ED5C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnotatingTests", "AnnotatingTests\AnnotatingTests.csproj", "{FC386A9E-E95D-4846-9216-1890DB326A83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +17,13 @@ Global
 		{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AA00FC0-CAEA-41B3-84E1-1AD93DFD8200}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC02D96B-9118-40E4-99C1-F325EBE2973B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC386A9E-E95D-4846-9216-1890DB326A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC386A9E-E95D-4846-9216-1890DB326A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC386A9E-E95D-4846-9216-1890DB326A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC386A9E-E95D-4846-9216-1890DB326A83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{EC02D96B-9118-40E4-99C1-F325EBE2973B} = {87797979-4678-4162-9E2D-22503D6ED5C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D69F5381-967C-4DE7-AF2D-D0859FA78A70}
