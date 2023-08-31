@@ -20,7 +20,7 @@
 		<Company>YiJingFramework</Company>
 		<PackageIcon>Taichi.png</PackageIcon>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>zhouyi;i-ching;yijing;yijingframework</PackageTags>
+		<PackageTags>YiJingFramework</PackageTags>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
