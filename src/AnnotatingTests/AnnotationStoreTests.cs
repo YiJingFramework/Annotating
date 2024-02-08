@@ -18,8 +18,8 @@ public class AnnotationStoreTests
         store.Tags.Add("Tag3");
 
         var namingGroup = store.AddGroup(title: "Gua Name", comment: "Names of the Guas");
-        namingGroup.AddEntry("111", "Qian");
-        namingGroup.AddEntry("000", "KKK");
+        _ = namingGroup.AddEntry("111", "Qian");
+        _ = namingGroup.AddEntry("000", "KKK");
         var entry = namingGroup.GetEntry("000");
         Assert.IsNotNull(entry);
         entry.Content = "Kun";
